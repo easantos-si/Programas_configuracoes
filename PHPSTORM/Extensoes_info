@@ -1,0 +1,855 @@
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+<{{ Instalar | Padrão para o projeto }}>
+Plugin: Laravel
+Desenvolvedor: Daniel Espendiller
+URL: https://plugins.jetbrains.com/plugin/7532-laravel/
+
+Instalar (https://github.com/barryvdh/laravel-ide-helper)
+        Instale o plug-in e ative-o por Projeto em "Configurações> Idiomas e estruturas> PHP> Laravel"
+        Use " Laravel IDE Helper Generator " para gerar classes ide
+        Configure o diretório Views de raiz, se não estiver usando a estrutura de arquivo padrão
+        (Ative o autopopup para conclusão na configuração do plug-in)
+
+
+        composer require --dev barryvdh/laravel-ide-helper
+
+        Add the service provider to the providers array in config/app.php
+        public function register()
+        {
+            if ($this->app->environment() !== 'production') {
+                $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+            }
+            // ...
+        }
+
+        Erick - Anotação pessoal:
+            Comandos:
+                php artisan clear-compiled
+                php artisan ide-helper:generate
+                php artisan ide-helper:meta
+                php artisan ide-helper:models -W   (As Property @property criadas na model vem das tabelas do banco)
+
+        Geração automática de phpDoc para fachadas do Laravel:
+            Agora você pode gerar novamente os documentos por conta própria (para atualizações futuras)
+            php artisan ide-helper:generate
+            Nota: bootstrap/compiled.phpdeve ser limpo primeiro, portanto, execute php artisan clear-compiled antes de gerar
+
+
+        Você pode configurar seu compositer.json para fazer isso após cada commit:
+        "scripts":{
+            "post-update-cmd": [
+                "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+                "@php artisan ide-helper:generate",
+                "@php artisan ide-helper:meta",
+                "@php artisan ide-helper:models -W",
+            ]
+        }, 
+        
+        Você também pode publicar o arquivo de configuração para alterar implementações (por exemplo, interface para classe específica) ou definir padrões para --helpersou --sublime.
+        php artisan vendor:publish --provider="Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider" --tag=config
+
+
+https://github.com/barryvdh/laravel-ide-helper
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Install
+Require this package with composer using the following command:
+
+composer require --dev barryvdh/laravel-ide-helper
+After updating composer, add the service provider to the providers array in config/app.php
+
+Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
+
+In Laravel, instead of adding the service provider in the config/app.php file, you can add the following code to your app/Providers/AppServiceProvider.php file, within the register() method:
+
+public function register()
+{
+    if ($this->app->environment() !== 'production') {
+        $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+    }
+    // ...
+}
+This will allow your application to load the Laravel IDE Helper on non-production enviroments.
+
+Automatic phpDoc generation for Laravel Facades
+You can now re-generate the docs yourself (for future updates)
+
+php artisan ide-helper:generate
+Note: bootstrap/compiled.php has to be cleared first, so run php artisan clear-compiled before generating.
+
+You can configure your composer.json to do this after each commit:
+
+"scripts":{
+    "post-update-cmd": [
+        "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+        "@php artisan ide-helper:generate",
+        "@php artisan ide-helper:meta"
+    ]
+},      
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Recursos:
+    PHP / Rota: Conclusão do controlador e ir para
+    PHP / Route: Router :: referências de recursos
+    PHP / Rota: detecta nomes de rotas na tecla "como"
+    PHP / View: conclusão e vá para modelos de visualização
+    PHP / Config: conclusão do array de classes "fornecedores"
+    PHP / Config: indexador de chave de configuração, conclusão e ir para
+    PHP / Translation: Indexador de chaves de tradução, conclusão e ir para
+    PHP: Serviço dic
+    Blade: estende, inclui e usa o marcador de linha de uso de PHP
+    Blade: seção, rendimento, substituição de pilha e implementa o marcador de linha
+    Blade: Melhorias na conclusão e navegação do nome do modelo Blade
+    Blade: diretiva trans
+    Predefinição: Índice para uso de Php
+    Façam
+    Tente remover os depps "IDE Helper Generator"; feito principalmente :)
+    Requer o plugin Symfony2, para reduzir o código duplicado
+    Sintaxe de tradução trans / transChoice
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: .​env files support
+Desenvolvedor: Adel F
+URL: https://plugins.jetbrains.com/plugin/9525--env-files-support/
+
+Recursos:
+    Conclusão de variáveis ​​de ambiente para linguagens PHP, JavaScript, Python, Go e Ruby
+    Suporte para arquivos Dockerfile e docker-compose.yml.
+    Vá para declaração (no arquivo .env) e usos (no código), com Ctrl (Cmd) + clique ou tecla de atalho (Ctrl (Cmd) -B, etc.)
+    marca-texto da sintaxe do arquivo .env
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Plugin: ANSI Highlighter
+
+Desenvolvedor: Ahmed Layouni
+URL: https://plugins.jetbrains.com/plugin/9707-ansi-highlighter/
+
+Recursos:
+    Este plug-in suporta a renderização das seqüências de renderização gráfica ANSI mais comuns no editor IntelliJ. Os seguintes recursos estão disponíveis:
+
+        Extensões de arquivo 'ANSI Aware' configuráveis:
+        Vá para Preferências | Editor Tipos de arquivo
+        Em 'Tipos de arquivos reconhecidos', selecione 'ANSI Aware'
+        Em 'Padrões registrados', adicione seus padrões de nome de arquivo 'ANSI Aware' personalizados, * .log é adicionado por padrão
+        Pressione 'Aplicar'
+        Alterne entre os modos Preview e Plain:
+        Clique com o botão direito do mouse no editor
+        Pressione 'Alternar para o modo Plain / Preview'
+        Como alternativa, use o atalho 'ctrl meta A' enquanto estiver no editor
+        Apenas os códigos de representação gráfica abaixo são suportados:
+        Redefinir código (0)
+        Código em negrito (1)
+        Código itálico (3)
+        Código de sublinhado único (4)
+        Todos os códigos de cores de primeiro plano de texto (30-37)
+        Todos os códigos de cores do plano de fundo do texto (40-47)
+        Personalize cores ANSI:
+        Vá para Preferências | Editor Cores e fontes | Cores do console
+        Expandir 'Cores ANSI'
+        Personalize as seguintes cores de primeiro plano / plano de fundo:
+        Preto
+        Vermelho
+        Verde
+        Amarelo
+        Azul
+        Magenta
+        Ciano
+        Branco
+        Outras cores são suportadas apenas pelo console (não pelo editor).
+        Pressione 'Aplicar'
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: BashSupport
+Desenvolvedor: Joachim Ansorg
+URL: https://plugins.jetbrains.com/plugin/4230-bashsupport/
+
+Recursos:
+    Suporte ao idioma Bash para a plataforma IntelliJ.
+    Suporta configurações de execução, realce de sintaxe, renomeação de refatoração, pesquisa de documentação, inspeções, correções rápidas e muito mais.
+    Você gosta disso? Dê uma estrela no GitHub . Avalie em plugins.jetbrains.com .
+
+    Notícias para usuários do 2019.2 e posterior: O JetBrains está empacotando um novo plug - in do Shell com o 2019.2. Você não deve usar o BashSupport e o Shell simultaneamente. Certifique-se de desativar um deles. O BashSupport suporta recursos mais avançados.
+    O Shell é mais robusto e fornece melhor integração da funcionalidade básica.
+
+    O futuro do BashSupport: visite bashsupport.compara aprender mais sobre isso. Em resumo:
+    O BashSupport permanecerá disponível, gratuito e de código aberto.
+    Obrigado por fazer parte do BashSupport! Já faz mais de 10 anos e o plug-in da comunidade mais popular. Está longe de ser perfeito - obrigado por usá-lo!
+    O plug-in Shell do JetBrain provavelmente se tornará o novo padrão para desenvolvedores de scripts shell. Isso significa que não há futuro para o BashSupport aqui.
+    O desenvolvimento será limitado à manutenção e correções para problemas sérios.
+    Haverá um novo plug-in BashSupport Pro pago ( leia mais )
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Plugin: Bindows Plugin
+Desenvolvedor: MB Technologies Inc
+URL: https://plugins.jetbrains.com/plugin/1428-bindows-plugin/
+
+Recursos:
+    Inicie e depure aplicativos Bindows AJAX diretamente do IntelliJ IDEA.
+    Os recursos de depuração permitem enviar mensagens para uma janela do console dentro do IntelliJ IDEA a partir do seu código. Isso funciona para o Internet Explorer e Firefox.
+    Você também pode enviar o código JavaScript para ser avaliado dentro de qualquer instância do navegador em execução a partir do IntelliJ IDEA. Isso permite controlar remotamente o navegador, verificar os valores das variáveis ​​e até reescrever métodos inteiros durante o tempo de execução.
+    Consulte nosso site para obter mais informações sobre como usar esses recursos.
+    Também temos um esquema xml que fornecerá a conclusão do código das classes Bindows em xml. O esquema é incluído no plug-in e instalado automaticamente.
+    Você também pode adicionar várias distribuições do Bindows e alternar rapidamente entre elas.
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Plugin: CamelCase
+Desenvolvedor: NetNexus IT Services
+URL: https://plugins.jetbrains.com/plugin/7160-camelcase/
+
+Recursos:
+Alterne facilmente entre CamelCase, camelCase, snake_case e SNAKE_CASE. Consulte o menu Editar ou use SHIFT + ALT + U.
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: CodeGlance
+Desenvolvedor: Vektah
+URL: https://plugins.jetbrains.com/plugin/7275-codeglance/
+
+Recursos:
+    Incorpora um minimapa de código semelhante ao encontrado no Sublime no painel do editor. Funciona com temas claros e escuros, usando cores personalizadas para realçar a sintaxe.
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: CommonJS AutoComplete
+Desenvolvedor: James Ballantine
+URL: https://plugins.jetbrains.com/plugin/7507-commonjs-autocomplete/
+
+Recursos:
+    Fornece instruções de preenchimento automático para CommonJS. Tentativas de localizar módulos ou arquivos correspondentes e concluir instruções requeridas com base em nomes de variáveis.
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Plugin: Database Navigator
+Desenvolvedor: Dan Cioca
+URL: https://plugins.jetbrains.com/plugin/1800-database-navigator/
+
+Recursos:
+    Ferramenta de desenvolvimento, script e navegação de banco de dados Este produto adiciona amplos recursos de desenvolvimento e manutenção de banco de dados ao ambiente de desenvolvimento IntelliJ IDEA e produtos relacionados. 
+    Juntamente com um editor SQL e PL / SQL qualificado e compatível com IDE, ele fornece gerenciamento avançado de conexão com o banco de dados, suporte à execução de scripts, navegação a objetos de banco de dados, 
+editor de dados e código, suporte para operações do compilador de banco de dados, execução e depuração de métodos, fábrica de objetos de banco de dados, bem como vários recursos de navegação entre todos os seus componentes.
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: deep-assoc-completion
+Desenvolvedor: klesun
+URL: https://plugins.jetbrains.com/plugin/9927-deep-assoc-completion/
+
+Recursos:
+    O preenchimento automático da matriz associativa do PHP é deduzido de outras funções.
+    Vá para a definição da tecla.
+    Especifique chaves de matriz e funções de referência em phpdoc ( formato ).
+    Infere tipos de argumento dentro de fechamentos de array_map, array_filter, etc ...
+    E muito mais coisas doces ...
+    Este plugin estende bastante a digitação do phpstorm com suporte a array associativo
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: deep-js-completion
+Desenvolvedor: klesun
+URL: https://plugins.jetbrains.com/plugin/11478-deep-js-completion/
+
+Recursos:
+    Conclusão da propriedade do objeto Javascript que funciona em contextos complexos.
+    Atualmente em fase de testes BETA
+    Como você deve saber, por padrão, o Webstorm sugere qualquer propriedade já definida em seu projeto quando você solicita a conclusão, someVar.independentemente do contexto.
+    Você pode marcar o sinalizador “Somente conclusão baseada em tipo” nas configurações, mas notará rapidamente que não há conclusão em alguns locais que possam ter essa configuração.
+    Por exemplo, argumentos de funções como map, filter, reduce, sorte funções definidas pelo usuário não terá conclusão.
+    Então, é por isso que estou escrevendo este plugin - para tornar possível codificar em js o mais confortável que você faria em alguma linguagem estática, com a ajuda de inferência de tipo e comentários de documento ( formato ).
+    Baseado no meu outro plugin PHP, deep-assoc-conclusão , a maioria dos recursos funciona da mesma maneira
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: Duplicate Lines
+Desenvolvedor: Josep Marí
+URL: https://plugins.jetbrains.com/plugin/10008-duplicate-lines/
+
+Recursos:
+    Plug-in que permite duplicar todas as linhas selecionadas, não apenas para baixo (como você já pode por padrão), mas também para cima. Nos dois casos, diferentemente da ação padrão, ela preservará a seleção original após a duplicação.
+    Suporta linhas únicas, múltiplas linhas selecionadas, múltiplos circunflexos e seleção de blocos.
+    Os atalhos padrão são "Shift + Ctrl + Alt + Up / Down" e "Shift + Command + Option + Up / Down" para o macOS.
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: Find Pull Request
+Desenvolvedor: Shiraji
+URL: https://plugins.jetbrains.com/plugin/8262-find-pull-request/
+
+Recursos:
+    Este plugin possui 3 recursos
+    Encontre a solicitação pull ou a solicitação de mesclagem da linha selecionada
+    Copie a solicitação de recebimento ou o URL da solicitação de mesclagem
+    Listar a solicitação de recebimento ou o número da solicitação de mesclagem
+    Os serviços de hospedagem git suportados são GitHub, GitLab, Bitbucket.
+
+    1. Encontre solicitação de recebimento
+    2. Copiar URL de solicitação pull
+    3. Solicitar pull de lista
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: GitToolBox
+Desenvolvedor: Lukasz Zielinski
+URL: https://plugins.jetbrains.com/plugin/7499-gittoolbox/
+
+Recursos:
+    Estende a integração do Git com recursos adicionais
+    Exibição de status, busca automática, anotação de culpa em linha, conclusão da caixa de diálogo de confirmação, notificações por trás e muito mais ...
+    Características
+        Status do Git :
+            número de confirmações antecipadas / atrasadas da ramificação atual como widget da barra de status
+            frente / trás, ramificação atual, tags no HEAD como decoração do Project View nos módulos
+            widget da barra de status com informações detalhadas e ações adicionais
+        Git culpa :
+            culpa inline - mostra a culpa pela linha no cursor no editor ativo
+            culpe detalhes balão por linha no sinal de intercalação
+            widget da barra de status com informações detalhadas e ações adicionais
+        Busca automática - executa a busca git em intervalos fixos
+        Push tags na ramificação atual - disponível no VCS / Git
+        Atrás do rastreador - mostra uma notificação quando a contagem atrasada das alterações de ramificações atuais é diferente de zero
+        Conclusão do nome da filial na caixa de diálogo Confirmar - fornece a conclusão do nome da filial na mensagem da caixa de diálogo Confirmar
+        Integração com o Git Extender - pode ser selecionada como ação de atualização executada por trás do pop-up do rastreador
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: Grep Console
+Desenvolvedor: Vojtech Krasa
+URL: https://plugins.jetbrains.com/plugin/7125-grep-console/
+
+Recursos:
+    Grep, cauda, ​​filtro, destaque ... tudo o que você precisa para um console. Também pode-se destacar o editor - bom para a análise de logs ...
+    Características:
+    Mude as cores do texto correspondente.
+    Grep output em uma nova aba do console.
+    Altere a saída ou execute qualquer ação usando scripts ou plug-ins personalizados do groovy.
+    Filtrar linhas indesejadas.
+    Solução alternativa para mixagem de fluxo stdout / stderr
+    Dobre a saída.
+    Tocar sons nas partidas.
+    Limpe o console nas correspondências.
+    Arquivos de cauda *.
+
+    Ações do editor:
+    Aplique destaques no editor de acordo com as configurações do console do plug-in. (Menu principal | Ferramentas)
+    Alterne o destaque em todas as ocorrências do texto selecionado no editor. (Ctrl + Alt + F3; Menu pop-up do editor; Menu principal | Ferramentas)
+
+    * Arquivo Tailing:
+    - Menu principal | Ferramentas | Abrir arquivo no console
+    - menu principal | Ajuda Console de login do Tail (IntelliJ)
+    - Project View ToolWindow | clique com o botão direito do mouse no menu de contexto | Tail
+    - Arraste e solte o painel "Tail File" na barra de ferramentas principal
+    - integração com o menu de contexto http e Windows
+    - Detecção automática de codificação
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: Ideolog
+Desenvolvedor: JetBrains s.r.o.
+URL: https://plugins.jetbrains.com/plugin/9746-ideolog/
+
+Recursos:
+    Destaque do código com base no nível do log: erro, aviso, informações etc.
+    Intenção de destacar colunas (hora, categoria, threads, quadros de pilha) no editor de arquivo de log.
+    Dobragem de eventos desinteressantes
+    Hiperlinks de rastreios de pilha no log
+    Navegação para o código-fonte que emite eventos de log (F7).
+    Ir para a próxima ação de erro (Shift + F7)
+    Estende a seleção
+    Intenção tp realçar a distância entre os eventos (marca o tempo como vermelho)
+    Faixa de erro avançada (mapa de calor)
+    Formato de log personalizado mais informações: https://github.com/JetBrains/ideolog/wiki/Custom-Log-Formats
+    Rastreador de problemas: https://github.com/JetBrains/ideolog/issues
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Plugin: Laravel Snippets
+Desenvolvedor: Alicannklc
+URL: https://plugins.jetbrains.com/plugin/10928-laravel-snippets/
+
+Recursos:
+    Live Templates For Laravel Mostre detalhes em Preferências -> Editor -> Live Templates -> 
+    Laravel-5snippets 
+    Laravel-Blade 
+    Laravel-Cache 
+    Laravel-Form 
+    Laravel-Helpers 
+    Laravel-Requests-and-Input 
+    Laravel-Routes 
+    Laravel-Schema 
+    Laravel-Session 
+    Laravel- Grupo de exibições e respostas.
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Plugin: LaravelStorm
+Desenvolvedor: SmartBit8
+URL: https://plugins.jetbrains.com/plugin/9795-laravelstorm/
+
+Recursos:
+    Ferramentas úteis para o desenvolvimento de laravel no IntelliJIdea e PhpStorm
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: LaTeX
+Desenvolvedor: hsz
+URL: https://plugins.jetbrains.com/plugin/7660-latex/
+
+Recursos:
+    Realce de sintaxe
+    Ações da barra de ferramentas do editor com atalhos
+    Dobragem de código
+    Solicitações de recursos:
+    sugerindo nomes de funções
+    obtendo pacotes instalados
+    gerando arquivos PDF
+    visualizar arquivos PDF gerados
+    e mais...
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: Lines Sorter
+Desenvolvedor: Sylvain FRANCOIS
+URL: https://plugins.jetbrains.com/plugin/5919-lines-sorter/
+
+Recursos:
+    Ação Adicionar linhas de classificação no menu Editar para classificar as linhas selecionadas ou o arquivo inteiro se a seleção estiver vazia
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: Material Theme UI
+Desenvolvedor: Mallowigi
+URL: https://plugins.jetbrains.com/plugin/8006-material-theme-ui/
+
+Recursos:
+    A Interface do usuário do tema de material é um plug-in para o JetBrains IDE (IntelliJ IDEA, WebStorm, Android Studio e assim por diante) 
+que altera a aparência original para a aparência do Design de material .
+    Originalmente inspirado no Tema material para texto sublime , este plug-in oferece uma variedade de configurações para ajustar os IDEs da maneira que você deseja.
+    Além de sua impressionante paleta de temas , também oferece:
+        Belos esquemas de cores que suportam a grande maioria dos idiomas
+        Substituição de todos os ícones por ícones coloridos de Design de materiais
+        Personalização da maioria dos controles e componentes do IDE
+        Muitas opções, como cores de destaque, menus acolchoados, recuo personalizado, estilos de seta e outros
+        Alguns ajustes úteis, como Project View Decorators, Language Additions, etc ...
+        E é atualizado com bastante frequência!
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: PHP Advanced AutoComplete
+Desenvolvedor: Thomas Schulz
+URL: https://plugins.jetbrains.com/plugin/7276-php-advanced-autocomplete/
+
+Recursos:
+    Adiciona suporte à conclusão automática para várias funções e métodos PHP integrados, em que parâmetro é uma string literal.
+    Atualmente, as seguintes funções são suportadas:
+        header / header_remove
+        Cabeçalhos de resposta HTTP, códigos de status, charsets, tipos MIME, locais e muito mais
+
+        Funções e métodos relacionados a arquivos e pastas (fopen, file_get_contents, dir ...)
+        Caminhos de arquivos e / ou pastas em relação ao arquivo atual (conclusão e referência)
+
+        date / strftime / DateTime :: format etc
+        Formatar caracteres e strings de formato comuns
+
+        strtotime / DateTime constructor / DateTime :: modify
+        notações DateTime
+
+        htmlentities / htmlspecialchars Charsets
+        suportados
+
+        Funções mb_string
+        Charset, quando necessário; tipos para mb_get_info e idiomas suportados para mb_language
+
+        ini_get / ini_set / ini_restore / get_cfg_var
+        Nomes de variáveis ​​INI conhecidos
+
+        extension_loaded
+        Extensões PHP conhecidas
+
+        Modos fopen / popen / SplFileInfo :: openFile
+        File
+
+        mysql_connect / mysqli_connect / mysqli / PDO
+        Nomes de host, nomes de banco de dados e nomes de usuários de fontes de dados definidas no projeto
+
+        mysql_select_db / mysqli_select_db / mysqli :: select_db
+        Nomes de banco de dados de fontes de dados definidas no projeto
+
+        mysqli_change_user / mysqli :: change_user Nomes de
+        usuário e nomes de banco de dados de fontes de dados definidas no projeto
+
+        mysql_set_charset / mysqli_set_charset / mysqli :: set_charset Conjunto de
+        caracteres suportados para MySQL
+
+        getenv
+        Variáveis ​​de ambiente comuns (como nas chaves de matriz $ _SERVER)
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: PHP Annotations
+Desenvolvedor: Daniel Espendiller
+URL: https://plugins.jetbrains.com/plugin/7320-php-annotations/
+
+
+Instalação
+    Basta instalar e ser feliz
+    Opcional: Instalar o Suporte Symfony
+    Opcional: Instalar PHP Toolbox
+    Opcional: Configure o plug-in "Idiomas e estrutura> PHP> Anotações"
+
+Recursos:
+    Youtube: PhpStorm: Plugin de anotações do PHP(https://www.youtube.com/watch?v=hACeHnUbHYo)
+    Anexe o PhpClass à DocTag para dar suporte a "Código> Otimizar importações"
+    Detecção automática de alias na instrução de uso
+    Filtre as classes de anotação em destinos como método, classe, propriedade, ...
+    Ir para tags de documentos e nomes de propriedades
+    Detectar valores de propriedade de anotação no nome da propriedade phpclass, incluindo tipos
+    Classes de índice com @Annotation dentro do bloco doc
+    Ponto de extensão do plug-in
+    Provedores relacionados à doutrina
+    Anotador de importação de classe
+    Constantes de classe no DocTags
+    Intenção e doutrina de ORM da doutrina para: repositório e propriedades
+    Importação automática de alias para a classe de anotação
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: PHP Toolbox
+Desenvolvedor: Daniel Espendiller
+URL: https://plugins.jetbrains.com/plugin/8133-php-toolbox/
+
+Recursos:
+    PHP: Mais variantes de conclusão de variável de dica de tipo
+    PHP: Melhor conclusão e navegação de matrizes que podem ser chamadas
+    PHP: Navegação global por strings para sintaxe de classe, método e função
+    As referências ao plug-in JSON extraem do Symfony Plugin: esquema, consulte README
+    Arquivos json básicos para: Behat, PHPUnit, Doutrina, Symfony, Twig e PHP Core
+    Servidor REST Json dentro do PhpStorm
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: Symfony Support
+Desenvolvedor: Daniel Espendiller
+URL: https://plugins.jetbrains.com/plugin/7219-symfony-support/
+
+Recursos:
+    Recipiente de injeção de dependência
+        Referências para serviços em ContainerInterface :: get ()
+        Tipo de resultado Detectar ContainerInterface :: get ()
+        Referências para serviços, tags, eventos, métodos, ... dentro de yaml, xml e php
+        Indexador para fornecer edição ao vivo sem um contêiner compilado
+        Indexador de classe com tag
+    Doutrina
+        Suporte ao ORM QueryBuilder, incluindo encadeamento e métodos aninhados
+        Referências e TypeProvider para a doutrina getRepository
+        TypeProvider for EntityRepository :: find / findOneBy / findAll / findBy
+        Resolução de campo e relações e anotação e yaml
+    Modelos / Galho
+        Nomes de modelos em todas as referências de arquivo
+        Fornecer modelo implementa e estende o goto no marcador de linha
+        Referências de arquivo de ativos como javascript, folhas de estilo e muito mais
+        Anotações do Support @Template
+        Suporte trans e transchoice com ação de extração de anotador, quickquick e tradução
+        Referências para nomes de blocos (conclusão desde PhpStorm8)
+        TypeProvider variável semelhante ao php com vários escopos e provedores como docblocks, controller, ações, inclusão de template, ...
+        Macro implementa saltar no marcador de linha
+        Suporte para filtro, função, macro e extensão
+    Formulários
+        Referências para tipos de formulário
+        Referências de nome de campo de formulário em data_class
+        Referências para opções de formulário, extensão, ...
+    Encaminhamento
+        Referências para chamadas relacionadas a UrlGenerator :: generate ()
+        Nome de rota de preenchimento automático em modelos de galho
+        Acesse métodos de nome de roteamento
+        CodeFolding para exibir uri de rota real em vez de seu nome
+        Conclusão do parâmetro de rota
+    De outros
+        Anotador que percebe rota, modelo, serviço, ativos desconhecidos, ...
+        Vários indexadores de stub para fornecer algum provedor de geração ao vivo em substituição ao contêiner compilado
+        Marcador de linha e "Arquivo relacionado" para fornecer possíveis destinos de goto e ação do controlador
+        Pesquise no Suporte em todos os lugares e pesquise apenas símbolos relacionados ao Symfony "Navegar> símbolo do Symfony"
+        Ponte para anotações PHP para suportar coisas relacionadas à anotação
+        Extração variável de ambientes Dotenv e Docker para o parâmetro DIC
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: PHP composer.​json support
+Desenvolvedor: psliwa
+URL: https://plugins.jetbrains.com/plugin/7631-php-composer-json-support/
+
+Recursos:
+    Este plug-in adiciona suporte à conclusão e inspeção automáticas para o arquivo composer.json em projetos PHP.
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: Php Inspections ​(EA Extended)​
+Desenvolvedor: Vladimir Reznichenko
+URL: https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-/
+
+Recursos:
+    Este plug-in é um Static Code Analyzer de código-fonte aberto para PHP (também conhecido como inspeções no JetBrains IDEs).
+
+    Ele cobre:
+    - problemas relacionados à arquitetura
+    - controle de tipos fracos e possíveis simplificações de construção de código
+    - problemas de desempenho
+    - condições "if" não ideais, duplicadas e suspeitas
+    - validação do uso de métodos mágicos
+    - expressões regulares
+    - problemas de compatibilidade
+    - variedade de erros demorados
+    - Uso da API PhpUnit
+    - problemas de segurança
+
+    Algumas inspeções esperam que instruções condicionais (por exemplo, "se") usem instruções de grupo para agrupar expressões de corpo. Se esse requisito for atendido, as inspeções adicionais serão aplicadas ao código-fonte.
+
+    Para atalhos do Mac, consulte este cartão de referência . Windows / Linux são:
+    Alt + Shift + I para inspecionar o arquivo atual com o perfil atual
+    Ctrl + Alt + Shift + I para executar a inspeção pelo nome
+    Ctrl + Shift + F4 para fechar os resultados da inspeção.
+
+    Em alguns projetos, a CPU e, portanto, o uso da bateria podem ser intensos; portanto, isso deve ser levado em consideração ao viajar com um laptop.
+
+    Nota: estamos enviando relatórios de falhas anônimos para o Google Analytics. Você pode revisar a implementação ou desativar os relatórios nas configurações do IDE.
+
+    Um grande obrigado aos nossos apoiadores : Pixel & Tonic (Bend, EUA) e OSS no Patreon
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: Pipe Table Formatter
+Desenvolvedor: Vendor’s Page
+URL: https://plugins.jetbrains.com/plugin/7550-pipe-table-formatter/
+
+Recursos:
+    Pequeno plug-in para formatar blocos de texto que representam uma tabela delimitada por pipe (|). Por exemplo, pode ser usado para formatar a tabela de exemplos do JBehave.
+    Delimitadores suportados: canal, vírgula, guia. Ao formatar, qualquer um dos delimitadores suportados é substituído por pipe.
+
+Uso
+    Selecione o texto no editor ou coloque o cursor dentro de uma tabela e escolha a ação "Pipe Table" -> "Format" no menu Code ou no menu pop-up do editor.
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: Quick File Preview
+Desenvolvedor: Martin Sommer
+URL: https://plugins.jetbrains.com/plugin/12778-quick-file-preview/
+
+Recursos:
+    Este plug-in permite uma rápida visualização / abertura / edição de arquivos em arquivos de seleção simples no Project View - semelhante à visualização no Sublime ou VSCode.
+
+    mostrar visualização (editor temporário aberto) do arquivo selecionado (clique único ou navegação no teclado)
+    editor de foco do arquivo selecionado, se já estiver aberto
+    página de configurações para individualizar o comportamento da visualização
+
+    Observação: se a rolagem automática na fonte estiver ativada, o editor real será aberto em vez de uma visualização. Esse é o comportamento pretendido e inalterado. 
+Para fazer o uso adequado da guia Visualizar, esta opção deve estar desativada!
+
+    Este plug-in é fresco como uma brisa leve no verão - contribua com questões, idéias e feedback no GitHub .
+
+    Agradecimentos a FineVisuals GmbH pelo logotipo do plugin.
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: Rainbow Brackets
+Desenvolvedor: izhangzhihao
+URL: https://plugins.jetbrains.com/plugin/10080-rainbow-brackets/
+
+Recursos:
+    Parênteses Rainbow / Parênteses Rainbow para IDEs baseados em IntelliJ
+    Patrocinar discutir código agora é tão fácil quanto destacar um bloco e digitar um comentário diretamente do seu IDE. Alivie as revisões de código e melhore a qualidade do código. 
+Experimente de graça. Experimente de graça!
+
+    Idiomas suportados:
+        ava, Scala, Clojure, Kotlin, Python, Haskell, Agda, Rust, JavaScript, TypeScript, Erlang, Go, Groovy, Ruby, Elixir, ObjectiveC, PHP, HTML, XML, SQL, linguagem Apex, C #, Dart ...
+
+    Escolha do autor ： Rainbow Brackets + Material Theme UI (Oceanic theme) + Nyan Progress Bar + Fira Code (Font)
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Plugin: Referencer
+Desenvolvedor: Kay Stenschke
+URL: https://plugins.jetbrains.com/plugin/7104-referencer/
+
+Recursos:
+    O plug-in adiciona três novas ferramentas para inserir, copiar e navegar entre as referências dos arquivos editados e outros contextos. Para copiar e inserir itens, uma lista de sugestões é adicionada ao editor, tirada de vários contextos:
+    Arquivos)
+    Seleção de texto
+    Posição de cursor no editor
+    Data e hora
+    E mais....
+
+    Ao evocar o plug-in de referenciador, uma lista de itens de referência extraídos dos contextos atuais é aberta.
+    ATALHOS DO TECLADO
+    Ctrl + Shift + Alt + V duas vezes - abre a lista de referências para inserção no documento atual
+    Ctrl + Shift + Alt + C duas vezes - Abrir lista de referências para copiar para a área de transferência
+    Ctrl + Shift + Alt + G duas vezes - Abra a lista de destinos de salto no arquivo atual para acessar
+
+    TIPOS DE REFERÊNCIAS PARA INSERIR / COPIAR
+    Todos os itens analisados ​​na lista a seguir são relativos à posição atual do cursor, por exemplo "nome da classe anterior" refere-se ao primeiro nome da classe encontrado ao pesquisar para trás a partir da posição do cursor. Algumas referências estão disponíveis apenas especificamente para determinados tipos de arquivo.
+
+    Data / hora atual formatadas como AAAA-MM-DD e AAAA-MM-DD HH: MM: SS
+    Registro de data e hora atual do UNIX em segundos e milissegundos
+    Caminho para o arquivo atual
+    Nome do arquivo atual
+    Nome do arquivo atual :: número da linha
+    Caminho para o arquivo atual :: número da linha
+    Ao ter uma seleção de várias linhas: Caminho do arquivo / seleção: número da linha. sel. numero da linha de partida. sel. fim
+    Ao abrir mais de um arquivo: lista de caminhos para todos os arquivos abertos
+    Arquivos PHP: lista de nomes de métodos no arquivo atual
+    Arquivos PHP: nome da classe anterior :: nome do método anterior
+    Arquivos PHP: nome da classe anterior :: número da linha
+    Arquivos PHP: nome da classe anterior
+    Arquivos PHP: nome da função anterior
+    Arquivos PHP: nome da variável anterior / seguinte
+    Arquivos JavaScript: namespace.classname
+    Arquivos JavaScript: namespace.classname.previous method name
+    Arquivos JavaScript: namespace.classname :: número da linha
+    Arquivos JavaScript: nome do método anterior / seguinte
+    Arquivos JavaScript: caminho do arquivo formatado como espaço para nome
+    Conclusões gerais de palavras: todas as continuações da palavra à esquerda do cursor, encontradas no arquivo atual
+
+    TIPOS DE REFERÊNCIAS PARA IR
+    Todas as linhas com marcadores no arquivo atual
+    Todas as linhas com declarações de método PHP ou JavaScript no arquivo atual
+    Todas as linhas com ocorrências de qualquer um dos padrões de salto dinâmico configurados no arquivo atual
+
+    Atenção: Este plug-in é distribuído "COMO ESTÁ", SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, expressas ou implícitas
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: RegexpTester
+Desenvolvedor: Sergey Evdokimov
+URL: https://plugins.jetbrains.com/plugin/2917-regexptester/
+
+Recursos:
+    Testador de expressão regular para IntelliJ IDEA.
+    Permite experimentar expressões regulares Java em um ambiente dinâmico.
+    Destaque completo da sintaxe da expressão regular para uma pista visual fácil (incluindo correspondência de colchetes e detecção de erros)
+    Dicas de ferramentas com ajuda de contexto serão mostradas quando o mouse estiver sobre uma parte da regex.
+    Seleção sincronizada de expressão regular e texto: basta selecionar parte do regexp para ver qual parte do texto corresponde a essa parte.
+    A funcionalidade deste plug-in está disponível como java-applet em http://myregexp.com/applet.html
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Plugin: ReStructuredText Support
+Desenvolvedor: JetBrains
+URL: https://plugins.jetbrains.com/plugin/7124-restructuredtext-support/
+
+Recursos:
+    Este plug-in permite o suporte a arquivos reStructuredText (* .rst)
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Plugin: Serial Port Monitor
+Desenvolvedor: Dmitry Cherkas
+URL: https://plugins.jetbrains.com/plugin/8031-serial-port-monitor/
+
+Recursos:
+    Este plugin visa alavancar o desenvolvimento do Arduino com o CLion, fornecendo a janela Serial Monitor Tool. Ele permite que você se comunique com seu dispositivo Arduino sem sair do IDE. A funcionalidade é bem parecida com as disponíveis no Arduino IDE através da "Serial Monitor Tool".
+
+    Recursos:
+    Janela Serial Monitor Tool com configurações persistentes baseadas em projeto
+    Widget de status
+    Vista do console duplex (vista regular + HEX)
+
+    Nota: Somente a porta COM (hardware e virtual) é suportada no momento. Para usar a porta COM virtual, instale todos os drivers necessários.
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: Translation
+Desenvolvedor: Yii.Guxing
+URL: https://plugins.jetbrains.com/plugin/8579-translation/
+
+Recursos:
+    Vários mecanismos de tradução.
+    Google Tradutor.
+    Você traduz.
+    Baidu traduzir.
+    Inter-tradução em vários idiomas.
+    Texto para fala.
+    Seleção automática de palavras.
+    Divisão automática de palavras.
+    Livro de palavras.
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<{{ Padrao }}>
+Plugin: WakaTime
+Desenvolvedor: WakaTime
+URL: https://plugins.jetbrains.com/plugin/7425-wakatime/
+
+Recursos:
+    1. No IDE, selecione Preferências -> Plugins -> Procurar Repositórios ....
+    2. Pesquise wakatime.
+    3. Clique no botão verde Instalar plug-in e confirme a instalação.
+    4. Reinicie seu IDE.
+    5. Digite sua chave da API e clique em Salvar.
+    6. Use seu IDE como você normalmente faz e seu tempo será rastreado automaticamente.
+    7. Visite https://wakatime.com para ver o seu tempo registrado.
+    Código fonte: https://github.com/wakatime/jetbrains-wakatime
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+
+
+
+
+
+
+
+
+
+
+<{{ Padrao }}>
+########################################################################################
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Plugin: 
+Desenvolvedor: 
+URL: 
+
+Recursos:
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
